@@ -1,0 +1,23 @@
+    <h4>Города</h4>
+
+    <ul class="nav nav-pills nav-stacked"
+        ng-repeat="city in cities.data|startFrom:currentPage*pageSize | limitTo:pageSize ">
+        <li ng-click="queryCallByName(city.name)"><a>{{city.name}}</a></li>
+    </ul>
+    <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button ng-disabled="currentPage >= cities.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+
+    <br>
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Узнать погоду" ng-model="city">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="queryCallByName(city)">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+    </div>
