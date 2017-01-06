@@ -1,0 +1,32 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "AppController.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Milla-masha/Weather.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Milla-masha/Weather/issues"
+  },
+  "homepage": "https://github.com/Milla-masha/Weather#readme",
+  "dependencies": {
+    "bower": "1.8.0",
+    "grunt": "1.0.0",
+    "wiredep": "^4.0.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-serve": "^0.1.6",
+    "grunt-wiredep": "^3.0.1",
+    "gulp": "^3.9.1",
+    "wiredep": "^4.0.0"
+  }
+}

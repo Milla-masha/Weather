@@ -4,7 +4,9 @@
     "Masha <Milla-Masha@mail.ru>"
   ],
   "description": "",
-  "main": "",
+  "main": [
+    "css/style.css"
+  ],
   "license": "MIT",
   "homepage": "",
   "ignore": [
@@ -13,5 +15,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "angular": "1.6.1",
+    "bootstrap": "^3.3.7",
+    "angular-resource": "1.6.1",
+    "jquery": "^3.1.1"
+  }
 }

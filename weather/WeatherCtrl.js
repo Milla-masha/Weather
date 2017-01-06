@@ -1,14 +1,11 @@
-app.factory('Weather', ['$resource',
-    function ($resource) {
-        return $resource('http://api.openweathermap.org/data/2.5/forecast', {
-            // name: 'name'
-        });
-    }
-])
+app.component('weatherComp', {
+    bindings: {
+        weathers: '='
+    },
+    templateUrl: 'weather/weather.html',
+    controller: 'WeatherCtrl'
+});
 
-app.controller('WeatherCtrl', ['$scope', 'Weather', function ($scope, Weather) {
-    $scope.queryCallByName = function (city) {
-        $scope.callName = "queryCall";
-        $scope.weathers = Weather.get({q: city, appid: "afb812a7d97fa7bbbf0f793de48b8832", cnt: "10"});
-    };
+
+app.controller('WeatherCtrl', ['$scope', function ($scope) {
 }]);
