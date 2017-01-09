@@ -12,22 +12,35 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="AppController.js"></script>
     <script src="filters/Filters.js"></script>
-    <script src="city/CityCtrl.js"></script>
-    <script src="weather/WeatherService.js"></script>
-    <script src="weather/WeatherCtrl.js"></script>
-    <script src="city/CityService.js"></script>
+    <script src="app/city/CityCtrl.js"></script>
+    <script src="app/weather/WeatherService.js"></script>
+    <script src="app/weather/WeatherCtrl.js"></script>
+    <script src="app/city/CityService.js"></script>
     <!-- endbower -->
 
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- endbower -->
+
+    <!-- injector:js -->
+    <script src="/AppController.js"></script>
+    <script src="/app/city/CityCtrl.js"></script>
+    <script src="/app/city/CityService.js"></script>
+    <script src="/filters/Filters.js"></script>
+    <script src="/app/weather/WeatherCtrl.js"></script>
+    <script src="/app/weather/WeatherService.js"></script>
+    <!-- endinjector -->
+
+    <!-- injector:css -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- endinjector -->
 </head>
 <body>
 
 <a ui-sref="home">Home</a>
 <div class="container-fluid">
-    <div class="row content" >
+    <div class="row content" ng-controller="WeatherCityCtrl as parent">
         <div class="col-sm-3 sidenav">
             <city-comp weathers="parent.weathers">
             </city-comp>

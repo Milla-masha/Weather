@@ -1,3 +1,4 @@
+
 'use strict';
 
 var app = angular.module('myApp', ['ngResource', 'ui.router']);
@@ -15,7 +16,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('weatherCity', {
             url: '/weather/:city',
-            templateUrl: 'weather/weather.html',
+            templateUrl: 'app/weather/weather.html',
             controller: 'WeatherCtrl'
         })
 });
