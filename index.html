@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="AppController.js"></script>
     <script src="filters/Filters.js"></script>
     <script src="city/CityCtrl.js"></script>
+    <script src="weather/WeatherService.js"></script>
     <script src="weather/WeatherCtrl.js"></script>
     <script src="city/CityService.js"></script>
     <!-- endbower -->
@@ -23,16 +25,15 @@
 </head>
 <body>
 
+<a ui-sref="home">Home</a>
 <div class="container-fluid">
-    <div class="row content" ng-controller="WeatherCityCtrl as parent">
+    <div class="row content" >
         <div class="col-sm-3 sidenav">
             <city-comp weathers="parent.weathers">
             </city-comp>
         </div>
         <div class="col-sm-9">
-            <weather-comp weathers="parent.weathers">
-            </weather-comp>
-
+            <div ui-view></div>
         </div>
     </div>
 </div>

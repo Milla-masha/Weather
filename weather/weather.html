@@ -2,7 +2,7 @@
     <small>Погода</small>
 </h4>
 
-<div class="col-sm-3" ng-repeat="list in $ctrl.weathers.list">
+<div class="col-sm-3" ng-repeat="list in weathers.list">
     <div class="well">
         <p>Дата:{{list.dt_txt|timeToDate}}</p>
         <p>Время:{{list.dt_txt|timeToHours}}</p>

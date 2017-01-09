@@ -1,41 +1,44 @@
 app.component('cityComp', {
-    bindings: {
-        weathers: '='
-    },
     templateUrl: 'city/city.html',
     controller: 'CityCtrl'
 
 });
 
-app.controller('CityCtrl', ['$scope', '$http', 'Weather', function ($scope, $http, Weather) {
+app.controller('CityCtrl', ['$scope', 'CityService', function ($scope, CityService) {
     var ctrl = this;
-    $scope.queryCallByName = function (city) {
-        $scope.callName = "queryCall";
-        ctrl.weathers = Weather.get({q: city, appid: "afb812a7d97fa7bbbf0f793de48b8832", cnt: "10"})
-    };
 
-    $http.get('resource/city.json').then(function (data) {
-        $scope.cities = data;
-    }, function () {
+    CityService.async().then(function(d) {
+        $scope.cities = d;
     });
-
     $scope.currentPage = 0;
     $scope.pageSize = 10;
     $scope.city = "Minsk";
 
     $scope.numberOfPages = function () {
-        if (!$scope.cities || !$scope.cities.data.length) {
+        if (!$scope.cities || !$scope.cities.length) {
             return;
         }
-        return Math.ceil($scope.cities.data.length / $scope.pageSize);
+        return Math.ceil($scope.cities.length / $scope.pageSize);
     }
 
 }]);
-app.factory('Weather', ['$resource',
-    function ($resource) {
-        return $resource('http://api.openweathermap.org/data/2.5/forecast', {});
-    }
-])
+app.factory('CityService', function($http) {
+    var myService = {
+        async: function() {
+            // $http returns a promise, which has a then function, which also returns a promise
+            var promise = $http.get('resource/city.json').then(function (response) {
+                // The then function here is an opportunity to modify the response
+                console.log(response);
+                // The return value gets picked up by the then in the controller.
+                return response.data;
+            });
+            // Return the promise to the controller
+            return promise;
+        }
+    };
+    return myService;
+});
+
 app.filter('timeToDate', function () {
     return function (input) {
         var newDate = new Date(input);
@@ -59,30 +62,46 @@ app.filter('startFrom', function () {
     }
 });
 
-app.component('weatherComp', {
-    bindings: {
-        weathers: '='
-    },
-    templateUrl: 'weather/weather.html',
-    controller: 'WeatherCtrl'
+app.controller('WeatherCtrl', ['$scope', '$stateParams', 'WeatherService', function ($scope, $stateParams, WeatherService) {
+    $scope.weathers = WeatherService.get({
+        q: $stateParams.city,
+        appid: "afb812a7d97fa7bbbf0f793de48b8832",
+        cnt: "10"
+    })
+}]);
+app.service('WeatherService', ['$resource',
+    function ($resource) {
+        return $resource('http://api.openweathermap.org/data/2.5/forecast', {});
+    }
+])
+'use strict';
+
+var app = angular.module('myApp', ['ngResource', 'ui.router']);
+
+
+app.config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'view/home.html'
+        })
+        .state('red', {
+            url: '/red',
+            templateUrl: 'red.html'
+        })
+        .state('weatherCity', {
+            url: '/weather/:city',
+            templateUrl: 'weather/weather.html',
+            controller: 'WeatherCtrl'
+        })
 });
 
-
-app.controller('WeatherCtrl', ['$scope', function ($scope) {
-}]);
-var app = angular.module('myApp', ['ngResource']);
-
 app.controller('WeatherCityCtrl', ['$scope', function ($scope) {
-    $scope.weathers = [];
-    console.log("cityweath " + this.weathers);
+    $scope.length = 0;
+    // $scope.weathers = [];
+    // console.log("cityweath " + this.weathers);
 }]);
 
-app.controller('PaginationCityCtrl', ['$scope', function ($scope) {
-    // $scope.curreantPage = 0;
-    $scope.pageSize = 10;
-    // $scope.length = 0;
-
-}]);
 /**
  * @license AngularJS v1.6.1
  * (c) 2010-2016 Google, Inc. http://angularjs.org

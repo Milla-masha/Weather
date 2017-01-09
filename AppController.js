@@ -1,13 +1,27 @@
-var app = angular.module('myApp', ['ngResource']);
+'use strict';
+
+var app = angular.module('myApp', ['ngResource', 'ui.router']);
+
+
+app.config(function ($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('home', {
+            url: '/home',
+            templateUrl: 'view/home.html'
+        })
+        .state('red', {
+            url: '/red',
+            templateUrl: 'red.html'
+        })
+        .state('weatherCity', {
+            url: '/weather/:city',
+            templateUrl: 'weather/weather.html',
+            controller: 'WeatherCtrl'
+        })
+});
 
 app.controller('WeatherCityCtrl', ['$scope', function ($scope) {
-    $scope.weathers = [];
-    console.log("cityweath " + this.weathers);
-}]);
-
-app.controller('PaginationCityCtrl', ['$scope', function ($scope) {
-    // $scope.curreantPage = 0;
-    $scope.pageSize = 10;
-    // $scope.length = 0;
-
+    $scope.length = 0;
+    // $scope.weathers = [];
+    // console.log("cityweath " + this.weathers);
 }]);

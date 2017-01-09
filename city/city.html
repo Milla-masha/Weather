@@ -1,8 +1,8 @@
 <h4>Города</h4>
 
 <ul class="nav nav-pills nav-stacked"
-    ng-repeat="city in cities.data|startFrom:currentPage*pageSize | limitTo:pageSize ">
-    <li ng-click="queryCallByName(city.name)"><a>{{city.name}}</a></li>
+    ng-repeat="city in cities|startFrom:currentPage*pageSize | limitTo:pageSize ">
+    <li><a ui-sref="weatherCity({city:city.name})">{{city.name}}</a></li>
 </ul>
 
 
@@ -18,7 +18,9 @@
 <div class="input-group">
     <input type="text" class="form-control" placeholder="Узнать погоду" ng-model="city">
     <span class="input-group-btn">
-          <button class="btn btn-default" type="button" ng-click="queryCallByName(city)">
+          <!--<button class="btn btn-default" type="button" ng-click="queryCallByName(city)"-->
+        <button class="btn btn-default" type="button"
+                ui-sref="weatherCity({city:city})">
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>

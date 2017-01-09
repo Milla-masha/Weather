@@ -28,8 +28,24 @@ module.exports = function (grunt) {
             }
         },
         wiredep: {
-            target: {
-                src: 'index.html' // point to your HTML file.
+            task: {
+                src: [
+                    'index.html'
+                ],
+                cwd: '.',
+                overrides: {
+                    'bootstrap': {
+                        'main': ['less/bootstrap.less', 'dist/css/bootstrap.min.css', 'dist/js/bootstrap.min.js']
+                    }
+                },
+                fileTypes: {
+                    html: {
+                        replace: {
+                            js: '<script src="/{{filePath}}"></script>',
+                            css: '<link rel="stylesheet" href="/{{filePath}}" />'
+                        }
+                    }
+                }
             }
         }
     });
