@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="form-signin">
+            <form class="card card-block m-x-auto bg-faded form-width">
+                <legend class="m-b-1 text-xs-center">Авторизация</legend>
+
+                <div class="form-group has-float-label">
+                    <input type="text" class="form-control" name="username" placeholder="Login" required=""
+                           autofocus="" ng-model="login"/>
+                </div>
+
+                <div class="form-group has-float-label">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required=""
+                           ng-model="password"/>
+                </div>
+                <div class="text-xs-center">
+                    <button class="btn btn-block btn-primary" type="submit" ng-click="signIn()">Войти</button>
+                </div>
+                <p>{{message}}</p>
+            </form>
+        </div>
+    </div>
+</div>

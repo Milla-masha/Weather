@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="form-signin">
+            <form class="card card-block m-x-auto bg-faded form-width">
+                <legend class="m-b-1 text-xs-center">Регистрация</legend>
+
+                <div class="form-group has-float-label">
+                    <input class="form-control" id="last" type="text" placeholder="login" ng-model="login"/>
+                    <label for="last">Login</label>
+                </div>
+
+                <div class="form-group has-float-label">
+                    <input class="form-control" id="password" type="password"
+                           ng-model="password"/>
+                    <label for="password">Пароль</label>
+                </div>
+                <div class="form-group has-float-label">
+                    <input class="form-control" id="password" type="password"
+                           ng-model="confirmPassword"/>
+                    <label for="password">Пароль повторно</label>
+                </div>
+
+                <div class="text-xs-center">
+                    <button class="btn btn-block btn-primary" type="submit" ng-click="registration()">Регистрация
+                    </button>
+                </div>
+                <p>{{message}}</p>
+            </form>
+        </div>
+    </div>
+</div>

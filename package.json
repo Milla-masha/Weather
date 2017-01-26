@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Milla-masha/Weather#readme",
   "dependencies": {
+    "angular-chart.js": "^1.1.1",
     "bower": "1.8.0",
     "grunt": "1.0.0",
     "wiredep": "^4.0.0"

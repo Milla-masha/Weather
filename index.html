@@ -10,12 +10,15 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <script src="AppController.js"></script>
     <script src="filters/Filters.js"></script>
     <script src="app/city/CityCtrl.js"></script>
-    <script src="app/weather/WeatherService.js"></script>
     <script src="app/weather/WeatherCtrl.js"></script>
     <script src="app/city/CityService.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
     <!-- endbower -->
 
     <!-- bower:css -->
@@ -24,25 +27,51 @@
     <!-- endbower -->
 
     <!-- injector:js -->
-    <script src="/AppController.js"></script>
-    <script src="/app/city/CityCtrl.js"></script>
-    <script src="/app/city/CityService.js"></script>
-    <script src="/filters/Filters.js"></script>
-    <script src="/app/weather/WeatherCtrl.js"></script>
-    <script src="/app/weather/WeatherService.js"></script>
+    <script src="AppController.js"></script>
+    <script src="app/city/CityCtrl.js"></script>
+    <script src="app/city/CityService.js"></script>
+    <script src="app/login/LoginCtrl.js"></script>
+    <script src="filters/Filters.js"></script>
+    <script src="app/weather/WeatherCtrl.js"></script>
+    <script src="app/service/AuthService.js"></script>
+    <script src="app/service/NetworkService.js"></script>
+    <script src="app/constant/Constant.js"></script>
+    <script src="app/registration/RegistrationCtrl.js"></script>
+    <script src="app/logout/LogoutCtrl.js"></script>
+    <script src="app/settings/SettingsCtrl.js"></script>
+    <script src="app/home/HomeCtrl.js"></script>
     <!-- endinjector -->
 
     <!-- injector:css -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- endinjector -->
 </head>
-<body>
+<body ng-controller="WeatherCityCtrl">
 
-<a ui-sref="home">Home</a>
+<nav role="navigation" class="navbar-default">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand">Погода</a>
+    </div>
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a ui-sref="home">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li ng-if="!isAuthorized"><a ui-sref="registration">Registration</a></li>
+            <li ng-if="!isAuthorized"><a ui-sref="login">Login</a></li>
+            <li ng-if="isAuthorized"><a ui-sref="settings">Settings</a></li>
+            <li ng-if="isAuthorized"><a ui-sref="logout">Logout</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+
 <div class="container-fluid">
-    <div class="row content" ng-controller="WeatherCityCtrl as parent">
+    <div class="row content">
         <div class="col-sm-3 sidenav">
-            <city-comp weathers="parent.weathers">
+            <city-comp weathers="weathers">
             </city-comp>
         </div>
         <div class="col-sm-9">
@@ -50,7 +79,6 @@
         </div>
     </div>
 </div>
-
 
 <footer class="container-fluid">
     <p>Footer Text</p>

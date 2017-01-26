@@ -1,0 +1,8 @@
+<div class="jumbotron">
+    <h1>Настройка</h1>
+    <p class="lead">Какой вы желаете установить город по умолчанию?</p>
+    <p class="lead" ng-if="dafaultCity">Сейчас у вас установлен {{dafaultCity}}</p>
+    <p class="lead" ng-if="!dafaultCity">Сейчас у вас нету города по умолчанию.</p>
+    <p><input type="text" class="form-control" placeholder="Название города" ng-model="city">
+        <a class="btn btn-block btn-primary" type="submit" href="#" ng-click="addDefaultCity()" role="button">Sign up today</a></p>
+</div>

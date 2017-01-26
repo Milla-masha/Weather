@@ -1,11 +1,28 @@
-<h4>
-    <small>Погода</small>
-</h4>
+<ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#panel1">Погода</a></li>
+    <li><a data-toggle="tab" href="#panel2">График</a></li>
+</ul>
 
-<div class="col-sm-3" ng-repeat="list in weathers.list">
-    <div class="well">
-        <p>Дата:{{list.dt_txt|timeToDate}}</p>
-        <p>Время:{{list.dt_txt|timeToHours}}</p>
-        <p>Градусы: {{list.main.temp-273.15| number:1}} С</p>
+<div class="tab-content">
+
+    <div id="panel1" class="tab-pane fade in active">
+        <h4>
+            <small>Погода в {{city}}</small>
+        </h4>
+        <div class="col-sm-3" ng-repeat="weather in weathers">
+            <div class="well">
+                <p>Дата:{{weather.date|timeToDate}}</p>
+                <p>Время:{{weather.date|timeToHours}}</p>
+                <p>Градусы: {{weather.temperature-273.15| number:1}} С</p>
+            </div>
+        </div>
     </div>
+
+    <div id="panel2" class="tab-pane fade">
+        <canvas id="line" class="chart chart-line" chart-data="data"
+                chart-labels="labels" chart-series="series" chart-options="options"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas>
+    </div>
+
 </div>

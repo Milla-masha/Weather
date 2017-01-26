@@ -1,8 +1,14 @@
+'use strict';
 
-    app.controller('WeatherCtrl', ['$scope', '$stateParams', 'WeatherService', function ($scope, $stateParams, WeatherService) {
-        $scope.weathers = WeatherService.get({
-            q: $stateParams.city,
-            appid: "afb812a7d97fa7bbbf0f793de48b8832",
-            cnt: "10"
-        })
-    }]);
+angular.module('myApp').controller('WeatherCtrl', WeatherCtrl);
+
+WeatherCtrl.$inject = ['$scope', '$stateParams', 'NetworkService'];
+
+function WeatherCtrl($scope, $stateParams, NetworkService) {
+
+    $scope.city=$stateParams.city;
+    var promise = NetworkService.getWeather('/weather', $scope.city).promise;
+    promise.then(function (response) {console.log(response);
+        $scope.weathers = response.data.content;
+    });
+}
